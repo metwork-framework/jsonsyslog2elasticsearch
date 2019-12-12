@@ -1,0 +1,1 @@
+# jsonsyslog2elasticsearch-
