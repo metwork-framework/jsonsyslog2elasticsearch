@@ -1,0 +1,5 @@
+elasticsearch>=6.0.0,<7.0.0
+-e git+https://github.com/metwork-framework/mflog.git#egg=mflog
+pytz>=2018.9
+ciso8601>=2.1.1
+ujson>=1.35
