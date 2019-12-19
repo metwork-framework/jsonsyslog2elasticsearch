@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import os
 import ujson
 import argparse
 import elasticsearch
@@ -17,7 +16,6 @@ import pytz
 import sys
 import threading
 import logging
-from pathlib import Path
 from mflog import get_logger, set_config
 
 DESCRIPTION = "syslog daemon which accept only UTF-8 JSON messages to send " \
@@ -99,24 +97,6 @@ def commit(es, force=False):
                     "(ES or network problem ?)", e)
     TO_SEND = []
     return True
-
-
-def patched_is_new_file(self):
-    size1 = self._filehandle().tell()
-    size2 = os.fstat(self._filehandle().fileno()).st_size
-    inode1 = os.fstat(self._filehandle().fileno()).st_ino
-    inode2 = os.stat(self.filename).st_ino
-    return self._rotated_logfile or (size1 == size2 and inode1 != inode2) or \
-        (inode1 == inode2 and size1 > size2)
-
-
-def patched_update_offset_file(self):
-    return
-
-
-def touch(filepath):
-    LOG.info("The file: %s does not exist => let's touch it" % filepath)
-    Path(filepath).touch()
 
 
 def no_transform(dict_object):
