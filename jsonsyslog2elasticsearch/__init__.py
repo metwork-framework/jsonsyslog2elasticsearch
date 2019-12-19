@@ -47,7 +47,7 @@ def signal_handler(signum, frame):
 def process(line, transform_func, index_func):
     if line is None:
         return False
-    tmp = line.strip()
+    tmp = line.strip().rstrip('\x00')
     if len(tmp) == 0:
         return False
     try:
@@ -269,7 +269,7 @@ def main():
             LOG.warning("can't find { char in read message: %s => ignoring",
                         item)
             continue
-        json_string = item[f:].strip()
+        json_string = item[f:]
         if process(json_string, transform_func, index_func):
             commit(es)
 
