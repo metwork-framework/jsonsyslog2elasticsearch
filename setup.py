@@ -9,6 +9,7 @@ with open('requirements.txt') as reqs:
 
 setup(
     name='jsonsyslog2elasticsearch',
+    url="https://github.com/metwork-framework/jsonsyslog2elasticsearch",
     packages=find_packages(),
     install_requires=install_requires,
     entry_points={
