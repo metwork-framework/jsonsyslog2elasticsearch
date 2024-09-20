@@ -75,7 +75,7 @@ def process(line, transform_func, index_func):
 
 def commit(es, force=False):
     global TO_SEND
-    if not(force) and len(TO_SEND) < CHUNK_SIZE:
+    if not force and len(TO_SEND) < CHUNK_SIZE:
         return False
     if len(TO_SEND) == 0:
         return False
