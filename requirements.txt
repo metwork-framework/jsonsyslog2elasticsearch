@@ -3,4 +3,4 @@ mflog
 pytz>=2018.9
 ciso8601>=2.1.1
 ujson>=1.35
-setuptools
+setuptools; python_version > '3.11'
