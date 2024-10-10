@@ -129,7 +129,11 @@ def default_index_func(index_const_value, dict_object):
         ref = ciso8601.parse_datetime(dict_object["@timestamp"])
         ref_utc = ref.replace(tzinfo=pytz.utc) - ref.utcoffset()
     else:
-        ref_utc = datetime.datetime.utcnow()
+        # utcnow() is deprecated
+        try:
+            ref_utc = datetime.datetime.now(datetime.UTC)
+        except:
+            ref_utc = datetime.datetime.utcnow()
     return ref_utc.strftime(index_const_value)
 
 
