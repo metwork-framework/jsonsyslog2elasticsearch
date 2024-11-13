@@ -6,7 +6,7 @@ import elasticsearch
 import functools
 import elasticsearch.helpers
 import importlib
-import datetime
+from datetime import datetime, timezone
 import time
 import ciso8601
 import signal
@@ -131,9 +131,9 @@ def default_index_func(index_const_value, dict_object):
     else:
         # utcnow() is deprecated
         try:
-            ref_utc = datetime.datetime.now(datetime.UTC)
+            ref_utc = datetime.now(timezone.utc).replace(tzinfo=None)
         except Exception:
-            ref_utc = datetime.datetime.utcnow()
+            ref_utc = datetime.utcnow()
     return ref_utc.strftime(index_const_value)
 
 
